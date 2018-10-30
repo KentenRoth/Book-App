@@ -17,7 +17,8 @@ var Book = mongoose.model('Book', {
 
     pages: {
         type: Number,
-        defualt: 300
+        default: 300,
+        require: true
     },
 
     opinion: {
@@ -29,6 +30,6 @@ var Book = mongoose.model('Book', {
 
 })
 
-model.exports = {
+module.exports = {
     Book
 }
