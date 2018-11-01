@@ -21,6 +21,22 @@ var Book = mongoose.model('Book', {
         require: true
     },
 
+    snippet: [{
+        snip: {
+            type: String,
+            require: true,
+            minlength: 1,
+            trim: true,
+            default: 'Hello',
+        },
+
+        page: {
+            type: Number,
+            require: true,
+            trim: true
+        }
+    }],
+
     opinion: {
         type: String,
         require: true,

@@ -18,7 +18,10 @@ app.post('/books', (req, res) => {
         title: req.body.title,
         author: req.body.author,
         pages: req.body.pages,
-        opinion: req.body.opinion
+        opinion: req.body.opinion,
+        snippet: req.body.snippet,
+        snip: req.body.snippet.snip,
+        page: req.body.snippet.page
     })
 
     book.save().then((doc) => {
@@ -37,11 +40,39 @@ app.get('/books', (req, res) => {
 })
 
 app.get('/books/:id', (req, res) => {
+    var id = req.params.id
 
+    if (!ObjectID.isValid(id)) {
+        return res.status(404).send()
+    }
+
+    Book.findById(id).then((book) => {
+        if (!book) {
+            return res.status(404).send()
+        } else {
+            res.send({book})
+        }
+    }, (e) => {
+        res.status(400).send()
+    })
 })
 
 app.delete('/books/:id', (req, res) => {
-    
+    var id = req.params.id
+
+    if(!ObjectID.isValid(id)) {
+        return res.status(404).send()
+    }
+
+    Book.findOneAndDelete(id).then((book) => {
+        if (!book) {
+            return res.status(404).send()
+        } else {
+            res.send({book})
+        }
+    }, (e) => {
+        res.status(400).send()
+    })
 })
 
 app.listen(port, () => {
