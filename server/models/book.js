@@ -3,14 +3,14 @@ var mongoose = require('mongoose')
 var Book = mongoose.model('Book', {
     title: {
         type: String,
-        require: true,
+        required: true,
         minlength: 1,
         trim: true
     },
 
     author: {
         type: String,
-        require: true,
+        required: true,
         minlength: 1,
         trim: true
     },
@@ -18,28 +18,26 @@ var Book = mongoose.model('Book', {
     pages: {
         type: Number,
         default: 300,
-        require: true
     },
 
     snippet: [{
         snip: {
             type: String,
-            require: true,
+            required: true,
             minlength: 1,
             trim: true,
-            default: 'Hello',
         },
 
         page: {
             type: Number,
-            require: true,
+            required: true,
             trim: true
         }
     }],
 
     opinion: {
         type: String,
-        require: true,
+        required: true,
         minlength: 1,
         trim: true
     }
