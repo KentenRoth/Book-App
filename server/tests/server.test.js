@@ -160,3 +160,32 @@ describe('DELETE /books/:id', () => {
             .end(done)
     })
 })
+
+describe('PATCH /books/:id', () => {
+    it('should update the book', (done) => {
+        var hexID = books[0]._id.toHexString()
+        var title = "Book 3"
+        var author = "Author 3"
+        var pages = 300
+        var opinion = "Great 3"
+        var snippet = []
+
+        request(app)
+            .patch(`/books/${hexID}`)
+            .send({
+                title,
+                author,
+                pages,
+                opinion,
+                snippet
+            })
+            .expect(200)
+            .expect((res) => {
+                expect(res.body.book.title).toBe(title)
+                expect(res.body.book.author).toBe(author)
+                expect(res.body.book.pages).toBe(pages)
+                expect(res.body.book.opinion).toBe(opinion)
+            })
+            .end(done)
+    })
+})
