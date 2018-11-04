@@ -80,3 +80,83 @@ describe('POST /books', () => {
 
     })
 })
+
+describe('GET /books', () => {
+    it('should get all books', (done) => {
+        request(app)
+            .get('/books')
+            .expect(200)
+            .expect((res) => {
+                expect(res.body.books.length).toBe(2)
+            })
+            .end(done)
+    })
+}) 
+
+describe('GET /books/:id', () => {
+    it('should return todo doc', (done) => {
+        var hexID = books[0]._id.toHexString()
+        request(app)
+            .get(`/books/${hexID}`)
+            .expect(200)
+            .expect((res) => {
+                expect(res.body.book.title).toBe(books[0].title)
+            })
+            .end(done)
+    })
+
+    it('should return 404 if book is not found', (done) => {
+        var hexID = new ObjectID().toHexString()
+
+        request(app) 
+            .get(`/books/${hexID}`)
+            .expect(404)
+            .end(done)
+    })
+
+    it('should return 404 if invalid ID', (done) => {
+        request(app)
+            .get('/books/123')
+            .expect(404)
+            .end(done)
+    })
+})
+
+describe('DELETE /books/:id', () => {
+    it('should remove a book', (done) => {
+        var hexID = books[0]._id.toHexString()
+
+        request(app)
+            .delete(`/books/${hexID}`)
+            .expect(200)
+            .expect((res) => {
+                expect(res.body.book._id).toBe(hexID)
+            })
+            .end((err, res) => {
+                if (err) {
+                    return done(err)
+                }
+
+                Book.findById(hexID).then((book) => {
+                    expect(book).toNotExist()
+                    done()
+                }).catch((e) => done(e))
+            })
+    })
+
+    it('should return 404 if book is not found', (done) => {
+        var hexID = new ObjectID().toHexString()
+
+        request(app)
+            .delete(`/books/${hexID}`)
+            .expect(404)
+            .end(done)
+    })
+
+    it('should return 404 if ID is not valid', (done) => {
+        request(app)
+            .delete(`/books/123`)
+            .expect(404)
+            .end(done)
+    })
+})

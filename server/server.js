@@ -64,7 +64,7 @@ app.delete('/books/:id', (req, res) => {
         return res.status(404).send()
     }
 
-    Book.findOneAndDelete(id).then((book) => {
+    Book.findByIdAndRemove(id).then((book) => {
         if (!book) {
             return res.status(404).send()
         } else {
