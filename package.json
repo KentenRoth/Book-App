@@ -39,6 +39,7 @@
     "url": "https://github.com/KentenRoth/Book-App/issues"
   },
   "homepage": "https://github.com/KentenRoth/Book-App#readme",
+  "proxy": "http://localhost:3000/",
   "browserslist": [
     ">0.2%",
     "not dead",
