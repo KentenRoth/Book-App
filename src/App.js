@@ -6,20 +6,21 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      books: []
+      books: {}
     }
   }
 
   componentDidMount() {
     fetch('/books').then(response => response.json())
     .then(readingList => this.setState({ books: readingList }))
+    
   }
 
   render() {
     return (
       <div>
         <h1>Book App</h1>
-        <BookList books={this.state.books} />
+        <BookList books={this.state.books}/>
       </div>
     );
   }
