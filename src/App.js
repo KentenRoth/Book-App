@@ -12,15 +12,16 @@ class App extends Component {
 
   componentDidMount() {
     fetch('/books').then(response => response.json())
-    .then(readingList => this.setState({ books: readingList }))
-    
+    .then(readingList => this.setState({ books: readingList}))
   }
 
   render() {
     return (
       <div>
         <h1>Book App</h1>
-        <BookList books={this.state.books}/>
+        <h2>{this.state.books.title}</h2>
+        
+        {console.log(this.state.books)}
       </div>
     );
   }
