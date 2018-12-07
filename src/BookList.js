@@ -5,15 +5,14 @@ const BookList = ({ books }) => {
 
     return (
         <div>
-            { books.map((book) => {
+            { books.map((book, i) => {
                 return(<Book
-                    key={books._id} 
-                    id={books._id}
-                    title={books.title}
-                    author={books.author}
+                    key={books[i]._id} 
+                    id={books[i]._id}
+                    title={books[i].title}
+                    author={books[i].author}
                     />)
             })}
-            {console.log(books.title)}
         </div>
     )
 }
