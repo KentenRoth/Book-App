@@ -11,6 +11,7 @@ const BookList = ({ books }) => {
                     id={books[i]._id}
                     title={books[i].title}
                     author={books[i].author}
+                    snippet={books[i].snippet.length}
                     />)
             })}
         </div>
