@@ -3,7 +3,7 @@ import './Book.css'
 
 const Book = ({title, author, snippet}) => {
     return(
-            <div className='bg-washed-blue br3 pa1 bw2 ma2 shadow-5 tc grow dib card'>
+            <div className='card grow'>
                 <div>
                     <h2>{title}</h2>
                     <h3>{author}</h3>

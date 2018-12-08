@@ -1,4 +1,11 @@
 .card {
-    width: 300px;
+    background-color: #F6FFFE;
+    border-radius: 10px;
+    box-shadow: 4px 4px 8px 0px rgba( 0, 0, 0, 0.2 );
     cursor: pointer;
+    display: inline-block;
+    margin: 8px;
+    padding: 5px;
+    text-align: center;
+    width: 300px;
 }
